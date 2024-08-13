@@ -3,7 +3,7 @@ import Header from "./components/Header";
 import Movie from "./components/Movie";
 import "./App.css";
 
-const API_URL = `http://www.omdbapi.com/?apikey=bb17e3e2`;
+const API_URL = 'https://www.omdbapi.com/?apikey=bb17e3e2';
 
 console.log(API_URL);
 const initialState = {
