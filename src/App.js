@@ -27,12 +27,16 @@ const App = () => {
     fetchMovies(state.searchTerm);
   }, [state.searchTerm]);
 
-  const fetchMovies = async (query) => {
-    const response = await fetch(`${API_URL}&s=${query}`);
-    const data = await response.json();
-    console.log(query);
-    dispatch({ type: "SET_MOVIES", payload: data.Search || [] });
-  };
+  const fetchMovies = async (query) => {  
+  try {  
+    const response = await fetch(`${API_URL}&s=${query}`);  
+    if (!response.ok) throw new Error('Network response was not ok');  
+    const data = await response.json();  
+    dispatch({ type: "SET_MOVIES", payload: data.Search || [] });  
+  } catch (error) {  
+    console.error('Fetch error:', error);  
+  }  
+};
 
   const handleSearch = (query) => {
     dispatch({ type: "SET_SEARCH_TERM", payload: query });
